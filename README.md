@@ -1,21 +1,21 @@
-Bash script to take solar data from local Enphase Envoy and push it to the ChargeHQ API.
+Bash script to take solar & consumption data locally from Enphase Envoy and push it to the Charge HQ API.
 Allows charging EV with excess solar.
 
-Works with version 5 Envoy firmware.  
-Version 7 will break the http auth and require further work.    
+Further information on Push API obtainable from Charge HQ https://chargehq.net/kb/push-api 
+
+Known working with version 5 Envoy firmware.  
+
 Uses the Envoy production.json data.
 
 Modify the following values in the script:
 
-chargeHQ_URL = `'https://<ChargeHQ API URL as provided by Jay>'`  
 local_envoy_ip = Leave as `'envoy'` or change to your Envoy IP address  
-siteId = `'<your siteId as provided by ChargeHQ>'`  
+apiKey = `'<your apiKey>'` (obtainable from https://app.chargehq.net/config/energy-monitor)
+interval = `60` (Do not set less than 30s as per Charge HQ instructions) 
 
-The script runs in an infinite loop updating data every 30 seconds. Time interval set by the sleep command.
+The script runs in an infinite loop. Remove while/sleep/wait/done commands if you prefer to use crontab. 
 
 Negative net_import = exporting  
-
-Full API not documented as not publicly available.
 
 Requirements: jq & bc
 
